@@ -1,6 +1,7 @@
 #include "object.h"  // Your file with the CwC declaration of Object
 #include "string.h"  // Your file with the String class
 #include "queue.h"    // Your file with the two list classes
+#include <cassert>
 
 void test1() {
     String* str = new String("foo");
@@ -14,6 +15,7 @@ void test1() {
     assert(queue->back()->equals(obj));
     assert(queue->pop()->equals(str));
     assert(queue->size() == 1);
+    delete queue;
 }
 
 void test2() {
@@ -24,6 +26,7 @@ void test2() {
     assert(queue->front() == NULL);
     assert(queue->back() == NULL);
     assert(queue->pop() == NULL);
+    delete queue;
 }
 
 void test3() {
@@ -41,6 +44,7 @@ void test3() {
     queue2->push(str2);
     queue2->push(obj);
     assert(!queue->equals(queue3));
+    delete queue;
 }
 
 void test4() {
@@ -67,9 +71,10 @@ void test4() {
     assert(queue->pop()->equals(obj));
     queue->push(str5);
     assert(queue->size() == 4);
+    delete queue;
 }
 
-void test() {
+int main() {
     test1();
     test2();
     test3();
